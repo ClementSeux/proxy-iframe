@@ -20,10 +20,11 @@ app.get("/", async (req, res) => {
     try {
         console.log("requete reçue");
         // recupere l'attribut link dans l'url
+        // Exemple: /shop?link=https://www.shopmium.com
         const link = req.query.link;
         console.log("link", link);
         // Effectuer une requête GET vers www.shopmium.com
-        const response = await axios.get("link", {
+        const response = await axios.get(link, {
             headers: {
                 // Supprimer l'en-tête X-Frame-Options
                 "X-Frame-Options": undefined,
@@ -33,7 +34,7 @@ app.get("/", async (req, res) => {
         res.send(response.data);
     } catch (error) {
         console.error(
-            "Erreur lors de la requête vers Shopmium :",
+            "Erreur lors de la requête vers " + req.query.link + ":",
             error.message
         );
         res.status(500).send("Erreur lors de la récupération du contenu.");
