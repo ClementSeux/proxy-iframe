@@ -18,6 +18,7 @@ const httpsOptions = {
 // Middleware pour gérer les requêtes vers /shop
 app.get("/", async (req, res) => {
     try {
+        console.log("requete reçue");
         // recupere l'attribut link dans l'url
         const link = req.query.link;
         console.log("link", link);
