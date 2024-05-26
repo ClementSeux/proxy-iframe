@@ -17,7 +17,7 @@ app.get("/shop", async (req, res) => {
         // replace all href= with localhost:3004/shop
         response.data = response.data.replace(
             'href="https://www.shopmium.com/fr/',
-            'href="http:/192.168.1.158:3004/shop/'
+            'href="http:/172.232.32.176:3004/shop/'
         );
 
         // Renvoyer le contenu HTML, CSS et JavaScript
