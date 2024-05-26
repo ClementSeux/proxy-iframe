@@ -16,10 +16,13 @@ const httpsOptions = {
 };
 
 // Middleware pour gérer les requêtes vers /shop
-app.get("/shop", async (req, res) => {
+app.get("/", async (req, res) => {
     try {
+        // recupere l'attribut link dans l'url
+        const link = req.query.link;
+        console.log("link", link);
         // Effectuer une requête GET vers www.shopmium.com
-        const response = await axios.get("https://www.shopmium.com/fr/", {
+        const response = await axios.get("link", {
             headers: {
                 // Supprimer l'en-tête X-Frame-Options
                 "X-Frame-Options": undefined,
