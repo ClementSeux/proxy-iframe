@@ -31,6 +31,7 @@ app.get("/", async (req, res) => {
             },
         });
         console.log("response received");
+        console.log(response.data);
         response.data.replace(
             "</body>",
             ```
