@@ -30,6 +30,25 @@ app.get("/", async (req, res) => {
                 "X-Frame-Options": undefined,
             },
         });
+        response.data.replace(
+            "</body>",
+            ```
+            <script>
+            window.onload = function() {
+              // Function to be executed when the URL changes
+              function handleURLChange() {
+                // Your code here
+                console.log("URL has changed!");
+              }
+          
+              // Check for URL changes every time the iframe loads a new page
+              window.addEventListener("hashchange", handleURLChange);
+              window.addEventListener("popstate", handleURLChange);
+            };
+          </script>
+          </body>
+          ```
+        );
         // Renvoyer le contenu HTML, CSS et JavaScript
         res.send(response.data);
     } catch (error) {
