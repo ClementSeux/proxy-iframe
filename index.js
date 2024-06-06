@@ -120,6 +120,8 @@ async function handleRequest(req, res, verb) {
             return "www.save.back.clementseux.me:3004/?link=https://www.couponnetwork.fr/cwoffers/clip_fr";
         });
 
+        res.set("X-Frame-Options", "ALLOWALL");
+        res.set("Access-Control-Allow-Origin", "*");
         res.send(oldHTML);
     } catch (error) {
         console.error(
