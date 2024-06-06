@@ -127,11 +127,11 @@ async function handleRequest(req, res, verb) {
 }
 
 // Middleware pour gérer les requêtes vers /shop
-app.get("/", async (req, res) => {
+app.get("/*", async (req, res) => {
     await handleRequest(req, res);
 });
 
-app.post("/", async (req, res) => {
+app.post("/*", async (req, res) => {
     await handleRequest(req, res);
 });
 
