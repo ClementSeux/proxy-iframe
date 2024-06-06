@@ -40,8 +40,6 @@ app.get("/", async (req, res) => {
         });
         let oldHTML = response.data;
 
-        
-
         // remple les liens par "https://www.save.back.me:3004/?link=lien"
         oldHTML = oldHTML.replace(/href="([^"]*)"/g, function (match, p1) {
             if (p1.startsWith("http")) {
@@ -84,32 +82,29 @@ app.get("/", async (req, res) => {
 
         oldHTML = oldHTML.replace(/url\(([^)]*)\)/g, function (match, p1) {
             if (p1.startsWith("http")) {
-                return 'url(' + p1 + ')';
+                return "url(" + p1 + ")";
             }
             if (p1.startsWith("www")) {
-                return 'url(' + p1 + ')';
+                return "url(" + p1 + ")";
             }
             if (p1.startsWith("#")) {
-                return 'url(' + p1 + ')';
+                return "url(" + p1 + ")";
             }
 
+            return (
+                "url(https://www.save.back.clementseux.me:3004/?link=" +
+                baseSite +
+                p1 +
+                ")"
+            );
         });
 
         oldHTML = oldHTML.replace(/app.shopmium.com/g, function (match, p1) {
             return (
-                'https://www.save.back.clementseux.me:3004/?link=' +
+                "https://www.save.back.clementseux.me:3004/?link=" +
                 baseSite +
                 p1 +
-                ')'
-            );
-        }
-        );
-
-            return (
-                'url(https://www.save.back.clementseux.me:3004/?link=' +
-                baseSite +
-                p1 +
-                ')'
+                ")"
             );
         });
 
