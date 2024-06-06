@@ -34,24 +34,29 @@ app.get("/", async (req, res) => {
         console.log("response received");
         console.log("type:", typeof response.data);
         let oldHTML = response.data;
+        let str = "test de string";
+        str = str.replace("test", "test2");
+        console.log("str:", str);
+
         oldHTML = oldHTML.replace(
             "</body>",
-            ```
-            <script>
-            window.onload = function() {
-              // Function to be executed when the URL changes
-              function handleURLChange() {
-                // Your code here
-                console.log("URL has changed!");
-              }
-          
-              // Check for URL changes every time the iframe loads a new page
-              window.addEventListener("hashchange", handleURLChange);
-              window.addEventListener("popstate", handleURLChange);
-            };
-          </script>
-          </body>
-          ```
+            "<script>console.log('script injected');</script></body>"
+            //     ```
+            //     <script>
+            //     window.onload = function() {
+            //       // Function to be executed when the URL changes
+            //       function handleURLChange() {
+            //         // Your code here
+            //         console.log("URL has changed!");
+            //       }
+
+            //       // Check for URL changes every time the iframe loads a new page
+            //       window.addEventListener("hashchange", handleURLChange);
+            //       window.addEventListener("popstate", handleURLChange);
+            //     };
+            //   </script>
+            //   </body>
+            //   ```
         );
         // Renvoyer le contenu HTML, CSS et JavaScript
         console.log("response modifiée");
