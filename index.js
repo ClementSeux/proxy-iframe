@@ -2,6 +2,7 @@ const express = require("express");
 const axios = require("axios"); // Pour effectuer des requêtes HTTP
 const https = require("https");
 const fs = require("fs");
+const { type } = require("os");
 
 const app = express();
 const PORT = process.env.PORT || 3004;
@@ -31,8 +32,9 @@ app.get("/", async (req, res) => {
             },
         });
         console.log("response received");
-        console.log(response.data);
-        response.data.replace(
+        console.log("type:", typeof response.data);
+        let oldHTML = response.data;
+        oldHTML.replace(
             "</body>",
             ```
             <script>
@@ -53,7 +55,7 @@ app.get("/", async (req, res) => {
         );
         // Renvoyer le contenu HTML, CSS et JavaScript
         console.log("response modifiée");
-        res.send(response.data);
+        res.send(oldHTML);
     } catch (error) {
         console.error(
             "Erreur lors de la requête vers " + req.query.link + ":",
