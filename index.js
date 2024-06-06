@@ -40,23 +40,7 @@ app.get("/", async (req, res) => {
 
         oldHTML = oldHTML.replace(
             "</body>",
-            "<script>console.log('script injected');</script></body>"
-            //     ```
-            //     <script>
-            //     window.onload = function() {
-            //       // Function to be executed when the URL changes
-            //       function handleURLChange() {
-            //         // Your code here
-            //         console.log("URL has changed!");
-            //       }
-
-            //       // Check for URL changes every time the iframe loads a new page
-            //       window.addEventListener("hashchange", handleURLChange);
-            //       window.addEventListener("popstate", handleURLChange);
-            //     };
-            //   </script>
-            //   </body>
-            //   ```
+            '<script>window.onload = function() { function handleURLChange() { console.log("URL has changed!");}window.addEventListener("hashchange", handleURLChange); window.addEventListener("popstate", handleURLChange);};</script></body>'
         );
         // Renvoyer le contenu HTML, CSS et JavaScript
         console.log("response modifiée");
