@@ -45,7 +45,7 @@ app.get("/", async (req, res) => {
 
         oldHTML = oldHTML.replace(
             "</body>",
-            '<script type="text/javascript">window.onload = function() { function handleURLChange() { console.log("URL has changed!");}window.addEventListener("hashchange", handleURLChange); window.addEventListener("popstate", handleURLChange);};window.console.log = function(message) {var logDiv = document.getElementById("logDiv");logDiv.innerHTML += message + "<br>";</script></body>'
+            '<script type="text/javascript">window.onload = function() { function handleURLChange(event) {event.preventDefault();console.log("URL has changed!");}window.addEventListener("hashchange", handleURLChange); window.addEventListener("popstate", handleURLChange);};window.console.log = function(message) {var logDiv = document.getElementById("logDiv");logDiv.innerHTML += message + "<br>";</script></body>'
         );
         // Renvoyer le contenu HTML, CSS et JavaScript
         console.log("response modifiée");
