@@ -16,8 +16,7 @@ const httpsOptions = {
     ),
 };
 
-// Middleware pour gérer les requêtes vers /shop
-app.get("/", async (req, res) => {
+async function handleRequest(req, res, verb) {
     try {
         console.log("requete reçue");
         // recupere l'attribut link dans l'url
@@ -30,14 +29,26 @@ app.get("/", async (req, res) => {
             link.match(/(http?:\/\/[^/]+)/)[1] ||
             link.match(/(https?:\/\/[^/]+)/)[1];
 
+        let response;
+
         // Effectuer une requête GET vers www.shopmium.com
-        const response = await axios.get(link, {
-            headers: {
-                // Supprimer l'en-tête X-Frame-Options
-                "X-Frame-Options": undefined,
-                "Access-Control-Allow-Origin": "*",
-            },
-        });
+        if (verb === "POST") {
+            response = await axios.post(link, {
+                headers: {
+                    // Supprimer l'en-tête X-Frame-Options
+                    "X-Frame-Options": undefined,
+                    "Access-Control-Allow-Origin": "*",
+                },
+            });
+        } else {
+            response = await axios.get(link, {
+                headers: {
+                    // Supprimer l'en-tête X-Frame-Options
+                    "X-Frame-Options": undefined,
+                    "Access-Control-Allow-Origin": "*",
+                },
+            });
+        }
         let oldHTML = response.data;
 
         // remple les liens par "https://www.save.back.me:3004/?link=lien"
@@ -113,6 +124,15 @@ app.get("/", async (req, res) => {
         );
         res.status(500).send("Erreur lors de la récupération du contenu.");
     }
+}
+
+// Middleware pour gérer les requêtes vers /shop
+app.get("/", async (req, res) => {
+    await handleRequest(req, res);
+});
+
+app.post("/", async (req, res) => {
+    await handleRequest(req, res);
 });
 
 https.createServer(httpsOptions, app).listen(PORT, () => {
