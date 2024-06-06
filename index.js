@@ -42,6 +42,7 @@ app.get("/", async (req, res) => {
         oldHTML = oldHTML.replace(/href="([^"]*)"/g, function (match, p1) {
             return (
                 'href="https://www.save.back.clementseux.me:3004/?link=' +
+                link +
                 p1 +
                 '"'
             );
@@ -51,6 +52,7 @@ app.get("/", async (req, res) => {
         oldHTML = oldHTML.replace(/src="([^"]*)"/g, function (match, p1) {
             return (
                 'src="https://www.save.back.clementseux.me:3004/?link=' +
+                link +
                 p1 +
                 '"'
             );
