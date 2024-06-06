@@ -30,6 +30,7 @@ app.get("/", async (req, res) => {
                 "X-Frame-Options": undefined,
             },
         });
+        console.log("response received");
         response.data.replace(
             "</body>",
             ```
