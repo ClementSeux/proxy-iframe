@@ -34,7 +34,7 @@ app.get("/", async (req, res) => {
         console.log("response received");
         console.log("type:", typeof response.data);
         let oldHTML = response.data;
-        oldHTML.replace(
+        oldHTML = oldHTML.replace(
             "</body>",
             ```
             <script>
