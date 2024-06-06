@@ -27,7 +27,9 @@ async function handleRequest(req, res, verb) {
         const baseSite =
             link.match(/(https?:\/\/[^/]+)/)[1] ||
             link.match(/(http?:\/\/[^/]+)/)[1] ||
-            link.match(/(https?:\/\/[^/]+)/)[1];
+            link.match(/(www\.[^/]+)/)[1];
+
+        console.log("baseSite", baseSite);
 
         let response;
 
