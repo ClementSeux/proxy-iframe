@@ -54,6 +54,14 @@ async function handleRequest(req, res, verb) {
         }
         let oldHTML = response.data;
 
+        // target window.location = '/account/sign-in';
+        oldHTML = oldHTML.replace(
+            /window.location = '([^']*)'/g,
+            function (match, p1) {
+                return "window.location = '/shop?link=" + baseSite + p1 + "'";
+            }
+        );
+
         // remple les liens par "https://www.save.back.me:3004/?link=lien"
         oldHTML = oldHTML.replace(/href="([^"]*)"/g, function (match, p1) {
             if (p1.startsWith("http")) {
