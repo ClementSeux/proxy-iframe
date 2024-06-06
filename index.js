@@ -35,6 +35,7 @@ app.get("/", async (req, res) => {
             headers: {
                 // Supprimer l'en-tête X-Frame-Options
                 "X-Frame-Options": undefined,
+                "Access-Control-Allow-Origin": "*",
             },
         });
         let oldHTML = response.data;
