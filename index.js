@@ -48,6 +48,10 @@ app.get("/", async (req, res) => {
             if (p1.startsWith("www")) {
                 return 'href="' + p1 + '"';
             }
+            if (p1.startsWith("#")) {
+                return 'href="' + p1 + '"';
+            }
+
             return (
                 'href="https://www.save.back.clementseux.me:3004/?link=' +
                 baseSite +
@@ -64,6 +68,10 @@ app.get("/", async (req, res) => {
             if (p1.startsWith("www")) {
                 return 'src="' + p1 + '"';
             }
+            if (p1.startsWith("#")) {
+                return 'src="' + p1 + '"';
+            }
+
             return (
                 'src="https://www.save.back.clementseux.me:3004/?link=' +
                 baseSite +
