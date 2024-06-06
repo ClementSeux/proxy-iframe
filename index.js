@@ -115,6 +115,10 @@ async function handleRequest(req, res, verb) {
                 "www.save.back.clementseux.me:3004/?link=" + baseSite + p1 + ")"
             );
         });
+        // search for "/cwoffers/clip_fr" and replace it with "www.save.back.clementseux.me:3004/?link=https://www.couponnetwork.fr/cwoffers/clip_fr"
+        oldHTML = oldHTML.replace(/\/cwoffers\/clip_fr/g, function (match, p1) {
+            return "www.save.back.clementseux.me:3004/?link=https://www.couponnetwork.fr/cwoffers/clip_fr";
+        });
 
         res.send(oldHTML);
     } catch (error) {
