@@ -39,13 +39,13 @@ app.get("/", async (req, res) => {
         console.log("str:", str);
 
         oldHTML = oldHTML.replace(
-            "<body>",
-            '<body><div id="logDiv" style="position: fixed; top: 0; right: 0; background-color: white; z-index: 10000; padding: 10px; border: 1px solid black;"></div>'
+            "</body>",
+            '<div id="logDiv" style="position: fixed; top: 0; right: 0; background-color: white; z-index: 10000; padding: 10px; border: 1px solid black;"></div></body>'
         );
 
         oldHTML = oldHTML.replace(
             "</body>",
-            '<script>window.onload = function() { function handleURLChange() { console.log("URL has changed!");}window.addEventListener("hashchange", handleURLChange); window.addEventListener("popstate", handleURLChange);};window.console.log = function(message) {var logDiv = document.getElementById("logDiv");logDiv.innerHTML += message + "<br>";</script></body>'
+            '<script type="text/javascript">window.onload = function() { function handleURLChange() { console.log("URL has changed!");}window.addEventListener("hashchange", handleURLChange); window.addEventListener("popstate", handleURLChange);};window.console.log = function(message) {var logDiv = document.getElementById("logDiv");logDiv.innerHTML += message + "<br>";</script></body>'
         );
         // Renvoyer le contenu HTML, CSS et JavaScript
         console.log("response modifiée");
