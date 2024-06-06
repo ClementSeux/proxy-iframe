@@ -44,6 +44,7 @@ app.get("/", async (req, res) => {
         );
         // Renvoyer le contenu HTML, CSS et JavaScript
         console.log("response modifiée");
+        console.log(oldHTML);
         res.send(oldHTML);
     } catch (error) {
         console.error(
