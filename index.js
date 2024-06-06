@@ -21,7 +21,7 @@ async function handleRequest(req, res, verb) {
         console.log("requete reçue");
         // recupere l'attribut link dans l'url
         // Exemple: /shop?link=https://www.shopmium.com
-        console.log(req.query);
+        console.log(req.url);
         const link = req.query.link;
         console.log("link", link);
         // Extrait le nom de domaine de l'URL ex: https://www.google.com/search => https://www.google.com
