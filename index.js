@@ -38,16 +38,34 @@ app.get("/", async (req, res) => {
         str = str.replace("test", "test2");
         console.log("str:", str);
 
-        oldHTML = oldHTML.replace(
-            "</body>",
-            '<div id="logDiv" style="position: fixed; top: 0; right: 0; background-color: white; z-index: 10000; padding: 10px; border: 1px solid black;"></div></body>'
-        );
+        // remple les liens par "https://www.save.back.me:3004/?link=lien"
+        oldHTML = oldHTML.replace(/href="([^"]*)"/g, function (match, p1) {
+            return (
+                'href="https://www.save.back.clementseux.me:3004/?link=' +
+                p1 +
+                '"'
+            );
+        });
 
-        oldHTML = oldHTML.replace(
-            "</body>",
-            '<script type="text/javascript">window.onload = function() { function handleURLChange(event) {event.preventDefault();console.log("URL has changed!");}window.addEventListener("hashchange", handleURLChange); window.addEventListener("popstate", handleURLChange);};window.console.log = function(message) {var logDiv = document.getElementById("logDiv");logDiv.innerHTML += message + "<br>";</script></body>'
-        );
-        // Renvoyer le contenu HTML, CSS et JavaScript
+        // remple les liens par "https://www.save.back.me:3004/?link=lien"
+        oldHTML = oldHTML.replace(/src="([^"]*)"/g, function (match, p1) {
+            return (
+                'src="https://www.save.back.clementseux.me:3004/?link=' +
+                p1 +
+                '"'
+            );
+        });
+
+        // oldHTML = oldHTML.replace(
+        //     "</body>",
+        //     '<div id="logDiv" style="position: fixed; top: 0; right: 0; background-color: white; z-index: 10000; padding: 10px; border: 1px solid black;"></div></body>'
+        // );
+
+        // oldHTML = oldHTML.replace(
+        //     "</body>",
+        //     '<script type="text/javascript">window.onload = function() { function handleURLChange(event) {event.preventDefault();console.log("URL has changed!");}window.addEventListener("hashchange", handleURLChange); window.addEventListener("popstate", handleURLChange);};window.console.log = function(message) {var logDiv = document.getElementById("logDiv");logDiv.innerHTML += message + "<br>";</script></body>'
+        // );
+        // // Renvoyer le contenu HTML, CSS et JavaScript
         console.log("response modifiée");
         console.log(oldHTML);
         res.send(oldHTML);
