@@ -40,6 +40,9 @@ app.get("/", async (req, res) => {
 
         // remple les liens par "https://www.save.back.me:3004/?link=lien"
         oldHTML = oldHTML.replace(/href="([^"]*)"/g, function (match, p1) {
+            if (p1.startsWith("http")) {
+                return 'href="' + p1 + '"';
+            }
             return (
                 'href="https://www.save.back.clementseux.me:3004/?link=' +
                 link +
@@ -50,6 +53,9 @@ app.get("/", async (req, res) => {
 
         // remple les liens par "https://www.save.back.me:3004/?link=lien"
         oldHTML = oldHTML.replace(/src="([^"]*)"/g, function (match, p1) {
+            if (p1.startsWith("http")) {
+                return 'src="' + p1 + '"';
+            }
             return (
                 'src="https://www.save.back.clementseux.me:3004/?link=' +
                 link +
