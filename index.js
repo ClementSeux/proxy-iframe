@@ -101,10 +101,7 @@ app.get("/", async (req, res) => {
 
         oldHTML = oldHTML.replace(/app.shopmium.com/g, function (match, p1) {
             return (
-                "https://www.save.back.clementseux.me:3004/?link=" +
-                baseSite +
-                p1 +
-                ")"
+                "www.save.back.clementseux.me:3004/?link=" + baseSite + p1 + ")"
             );
         });
 
